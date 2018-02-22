@@ -1,1 +1,0 @@
-# NorwegianCityRace_App
