@@ -20,6 +20,19 @@ using Android.App;
 
 [assembly: AssemblyVersion("1.0.0")]
 
+//*************** last updated 23.02.18 ***************
+// The following attributes are used to specify if camera hardware required or not
+// if camera hardware is used set required to ture.
+
+[assembly: UsesFeature("android.hardware.camera", Required = false)]
+
+// The following attributes are used to specify if camera autofocus function is required or not
+// if camera autofocus is used set required to ture.
+
+[assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]
+//*****************************************************
+
+
 // The following attributes are used to specify the signing key for the assembly, 
 // if desired. See the Mono documentation for more information about signing.
 

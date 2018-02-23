@@ -20,10 +20,15 @@ namespace NorwegianCityRace.Droid
 
             base.OnCreate(bundle);
 
-           // Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+           Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
+        }
+        // adding OnRequestPermissions Camera Use
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
