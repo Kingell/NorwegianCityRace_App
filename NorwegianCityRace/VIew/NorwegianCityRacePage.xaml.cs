@@ -16,7 +16,7 @@ namespace NorwegianCityRace.VIew
 
         async void Enter_btn_clicked(object sender, EventArgs e)
         {
-            //TODO : PIN CODE 
+            //TODO : PIN CODE
 
             await Navigation.PushModalAsync(new FirstPage());
         }

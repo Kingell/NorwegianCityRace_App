@@ -5,7 +5,7 @@
     x:Class="NorwegianCityRace.VIew.NorwegianCityRacePage"
     BackgroundColor="#1d3445">
 
-    <StackLayout x:Name="Content" HorizontalOptions="Center" VerticalOptions="Center">
+    <StackLayout x:Name="Content_Layout" HorizontalOptions="Center" VerticalOptions="Center">
         <Image x:Name="Logo" HeightRequest="160" WidthRequest="160" Source="Sample.png"></Image>
         <Entry Placeholder="Enter PIN Code" TextColor="White" FontSize="20" HorizontalTextAlignment="Center" WidthRequest="300"> </Entry>
         <Button x:Name="Enter_game_btn" WidthRequest="300" Text="Enter" FontSize="20" Clicked="Enter_btn_clicked"></Button>
