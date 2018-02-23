@@ -8,7 +8,7 @@ namespace NorwegianCityRace
         {
             InitializeComponent();
 
-            MainPage = new NorwegianCityRacePage();
+            MainPage = new VIew.NorwegianCityRacePage();
         }
 
         protected override void OnStart()

@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace NorwegianCityRace
+namespace NorwegianCityRace.VIew
 {
     public partial class NorwegianCityRacePage : ContentPage
     {
