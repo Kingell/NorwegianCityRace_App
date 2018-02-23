@@ -153,6 +153,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\Sample.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Sample.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Sample.png" />
+    <AndroidResource Include="Resources\drawable\grp_profile.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\grp_profile.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grp_profile.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\grp_profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\xml\" />

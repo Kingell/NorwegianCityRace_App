@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="NorwegianCityRace.VIew.SecondPage">
+
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label Text="Dette er en test "></Label>
+        <Label Text="{Binding Name}"></Label>
+        <Image Source="{Binding Picture}" WidthRequest="300" HeightRequest="300"></Image>
+    </StackLayout>
+
+    
+</ContentPage>

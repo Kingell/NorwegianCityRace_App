@@ -5,17 +5,18 @@
 
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Image x:Name="grp_img" Source="Sample.png" WidthRequest="400" HeightRequest="400">
+        <Image x:Name="grp_img" Source="{Binding Picture}" WidthRequest="400" HeightRequest="400">
         <Image.GestureRecognizers>
-        <TapGestureRecognizer Tapped="Handle_Tapped"></TapGestureRecognizer>
+        <TapGestureRecognizer Command="{Binding TappedCommand}"></TapGestureRecognizer>
             </Image.GestureRecognizers>
         </Image>
         <Entry x:Name="grp_txt" 
             Placeholder="Enter Group Name " 
             FontSize="15" 
             HorizontalTextAlignment="Center"
-            WidthRequest="200"></Entry>
-        <Button x:Name="next_btn" Text="Next" WidthRequest="200" Clicked="Next_Clicked"></Button>
+            WidthRequest="200"
+            Text="{Binding Name, Mode=TwoWay}"></Entry>
+        <Button x:Name="next_btn" Text="Next" WidthRequest="200" Command="{Binding NextCommand}"></Button>
     </StackLayout>
     
 </ContentPage>

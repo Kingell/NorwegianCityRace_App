@@ -34,6 +34,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="VIew\SecondPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -46,6 +50,16 @@
     <Compile Include="VIew\FirstPage.xaml.cs">
       <DependentUpon>FirstPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="VIew\SecondPage.xaml.cs">
+      <DependentUpon>SecondPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MvvmHelpers\BaseViewModel.cs" />
+    <Compile Include="MvvmHelpers\Grouping.cs" />
+    <Compile Include="MvvmHelpers\ObservableObject.cs" />
+    <Compile Include="MvvmHelpers\ObservableRangeCollection.cs" />
+    <Compile Include="MvvmHelpers\Utils.cs" />
+    <Compile Include="ViewModel\FirstPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -66,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="MvvmHelpers\MvvmHelpers.csproj" />
+    <None Include="Resources\Image\grp_profile.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -73,6 +89,7 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Image\" />
+    <Folder Include="MvvmHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Image\Sample.png" />
