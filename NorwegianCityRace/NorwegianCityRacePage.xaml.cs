@@ -8,7 +8,5 @@ namespace NorwegianCityRace
         {
             InitializeComponent();
         }
-
-        public string fredrik;
     }
 }
