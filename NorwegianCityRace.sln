@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorwegianCityRace.Droid", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorwegianCityRaceASP.Net", "NorwegianCityRaceASP.Net\NorwegianCityRaceASP.Net.csproj", "{BD1E1588-81BF-4960-96EB-1002FFD7B325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +69,17 @@ Global
 		{BD1E1588-81BF-4960-96EB-1002FFD7B325}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{BD1E1588-81BF-4960-96EB-1002FFD7B325}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{BD1E1588-81BF-4960-96EB-1002FFD7B325}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|iPhone.Build.0 = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{89D5019C-2B40-4F99-94D4-1BD02FFDD4DB}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
