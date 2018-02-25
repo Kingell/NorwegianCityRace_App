@@ -60,6 +60,7 @@
     <Compile Include="MvvmHelpers\ObservableRangeCollection.cs" />
     <Compile Include="MvvmHelpers\Utils.cs" />
     <Compile Include="ViewModel\FirstPageViewModel.cs" />
+    <Compile Include="ViewModel\SecondPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

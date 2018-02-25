@@ -15,10 +15,24 @@ namespace NorwegianCityRace.ViewModel
 
             TappedCommand = new Command(async () => await RunCamera());
             NextCommand = new Command(async () => await NextPage());
+            
 
         }
 
+      
 
+        /*
+        private GroupModel _model = new GroupModel();
+        public GroupModel Model{
+            get{
+                return _model;
+            }
+            set{
+                _model = value;
+                OnPropertyChanged();
+            }
+        }
+        */
 
 
         string _name { get; set; }
@@ -81,23 +95,22 @@ namespace NorwegianCityRace.ViewModel
             });
 
 
+
         }
 
+        //FIXME: 
+      
 
         async Task NextPage(){
-
-            GroupModel model = new GroupModel()
+            GroupModel Model = new GroupModel()
             {
-                Name = Name,
-              
-
+                Picture = Picture,
+                Name = Name
             };
-            SecondPage secondpage = new SecondPage
-            {
-                BindingContext = model
-            };
-            await Application.Current.MainPage.Navigation.PushAsync(model);
 
+
+            await Application.Current.MainPage.DisplayAlert("Notification", Model.Name + Model.Picture, "Okay");
+            await Application.Current.MainPage.Navigation.PushModalAsync(new SecondPage());
         }
     }
 }

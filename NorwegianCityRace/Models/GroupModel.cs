@@ -7,7 +7,7 @@ namespace NorwegianCityRace.Models
     {
 
         public string Name { get; set; }
-        public Image Picture { get; set; }
+        public ImageSource Picture { get; set; }
 
 
 

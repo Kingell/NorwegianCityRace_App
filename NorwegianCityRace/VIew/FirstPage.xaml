@@ -5,7 +5,7 @@
 
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Image x:Name="grp_img" Source="{Binding Picture}" WidthRequest="400" HeightRequest="400">
+        <Image x:Name="grp_img" Source="{Binding Picture, Mode=TwoWay}" WidthRequest="400" HeightRequest="400">
         <Image.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding TappedCommand}"></TapGestureRecognizer>
             </Image.GestureRecognizers>

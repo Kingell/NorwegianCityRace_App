@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using NorwegianCityRace.ViewModel;
 using Xamarin.Forms;
 
 namespace NorwegianCityRace.VIew
@@ -10,6 +10,7 @@ namespace NorwegianCityRace.VIew
         public SecondPage()
         {
             InitializeComponent();
+            BindingContext = new SecondPageViewModel();
         }
     }
 }

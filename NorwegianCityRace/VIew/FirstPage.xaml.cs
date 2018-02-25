@@ -15,7 +15,7 @@ namespace NorwegianCityRace.VIew
         {
             InitializeComponent();
 
-            BindingContext = new FirstPageViewModel();
+           BindingContext = new FirstPageViewModel();
         }
 
 
