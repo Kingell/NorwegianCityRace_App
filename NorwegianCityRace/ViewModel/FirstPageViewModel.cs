@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using MvvmHelpers;
 using NorwegianCityRace.Models;
+using NorwegianCityRace.MvvmHelpers;
 using NorwegianCityRace.VIew;
 using Plugin.Media;
 using Xamarin.Forms;
+
 
 namespace NorwegianCityRace.ViewModel
 {
@@ -13,26 +18,7 @@ namespace NorwegianCityRace.ViewModel
         public FirstPageViewModel()
         {
 
-            TappedCommand = new Command(async () => await RunCamera());
-            NextCommand = new Command(async () => await NextPage());
-            
-
         }
-
-      
-
-        /*
-        private GroupModel _model = new GroupModel();
-        public GroupModel Model{
-            get{
-                return _model;
-            }
-            set{
-                _model = value;
-                OnPropertyChanged();
-            }
-        }
-        */
 
 
         string _name { get; set; }
@@ -61,10 +47,38 @@ namespace NorwegianCityRace.ViewModel
         }
 
 
-        public Command NextCommand { get; }
+        //FIXME: legg til send metode for å sende til database før navigere videre til neste side.
+
+        public RelayCommand NextCommand { get{
+
+                return new RelayCommand( async() =>
+                {
+                    GroupModel Model = new GroupModel()
+                    {
+                        Picture = Picture,
+                        Name = Name
+                    };
+
+
+                    await Application.Current.MainPage.DisplayAlert("Notification", Model.Name + Model.Picture, "Okay");
+                    var nav = SimpleIoc.Default.GetInstance<INavigationService>();
+                    nav.NavigateTo("SecondPage",Model);
+                });
+            } }
+
+
 
         //TapGestureRecognizer Start Camera on Tapped
-        public Command TappedCommand { get; }
+        public RelayCommand TappedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await RunCamera();
+                });
+            }
+        }
 
 
        async Task RunCamera(){
@@ -98,20 +112,8 @@ namespace NorwegianCityRace.ViewModel
 
         }
 
-        //FIXME: 
-      
+       
 
-        async Task NextPage(){
-            GroupModel Model = new GroupModel()
-            {
-                Picture = Picture,
-                Name = Name
-            };
-
-
-            await Application.Current.MainPage.DisplayAlert("Notification", Model.Name + Model.Picture, "Okay");
-            await Application.Current.MainPage.Navigation.PushModalAsync(new SecondPage());
-        }
     }
 }
 

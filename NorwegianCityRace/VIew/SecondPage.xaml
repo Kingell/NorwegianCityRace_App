@@ -6,8 +6,8 @@
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
         <Label Text="Dette er en test "></Label>
-        <Label Text="{Binding Model.Name}"></Label>
-        <Image Source="{Binding Model.Picture}" WidthRequest="300" HeightRequest="300"></Image>
+        <Label Text="{Binding Name, Mode=TwoWay}"></Label>
+        <Image Source="{Binding Picture, Mode=TwoWay}" WidthRequest="300" HeightRequest="300"></Image>
     </StackLayout>
 
     

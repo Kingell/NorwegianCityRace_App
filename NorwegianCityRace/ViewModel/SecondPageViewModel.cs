@@ -10,13 +10,18 @@ namespace NorwegianCityRace.ViewModel
 
 
 
-
-        public SecondPageViewModel()
-        {
+        public SecondPageViewModel(){
             
         }
 
-        private GroupModel _model { get; set; }
+        public SecondPageViewModel(GroupModel model)
+        {
+            model.Name = _name;
+            model.Picture = _picture;
+
+        }
+
+        /*private GroupModel _model { get; set; }
         public GroupModel Model{
             get{
                 return _model;
@@ -26,7 +31,33 @@ namespace NorwegianCityRace.ViewModel
                 OnPropertyChanged();
             }
         }
+        */
 
+        string _name { get; set; }
+        public string Name{
+            get{
+                return _name;
+            }
+            set{
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+
+        ImageSource _picture { get; set; }
+        public ImageSource Picture
+        {
+            get
+            {
+                return _picture;
+            }
+            set
+            {
+                _picture = value;
+                OnPropertyChanged(nameof(Picture));
+            }
+        }
 
 
 

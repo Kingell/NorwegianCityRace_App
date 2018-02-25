@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
+
 namespace MvvmHelpers
 {
     /// <summary>

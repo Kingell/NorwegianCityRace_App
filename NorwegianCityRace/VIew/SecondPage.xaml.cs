@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NorwegianCityRace.Models;
 using NorwegianCityRace.ViewModel;
 using Xamarin.Forms;
 
