@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using NorwegianCityRace.MvvmHelpers;
 using Xamarin.Forms;
@@ -11,22 +12,35 @@ namespace NorwegianCityRace
         {
             InitializeComponent();
 
+            //INavigationService navigationService;
+            NavigationService navigationService;
 
-            var navigationPage = new NavigationPage();
-            var navigationService = new NavigationService();
-            navigationService.Initialize(navigationPage);
+            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
+            {
+                // Setup navigation service:
+                navigationService = new NavigationService();
 
-            navigationService.Configure("Main",typeof(VIew.NorwegianCityRacePage));
-            navigationService.Configure("FirstPage",typeof(VIew.FirstPage));
-            navigationService.Configure("SecondPage",typeof(VIew.SecondPage));
+                // Configure pages:
+                navigationService.Configure("Main", typeof(VIew.NorwegianCityRacePage));
+                navigationService.Configure("FirstPage", typeof(VIew.FirstPage));
+                navigationService.Configure("SecondPage", typeof(VIew.SecondPage));
 
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-            //SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
+                // Register NavigationService in IoC container:
 
-            navigationPage.PushAsync(new VIew.NorwegianCityRacePage());
+                SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+            }
 
-            MainPage = navigationPage;
+            else
+                navigationService =(NavigationService)SimpleIoc.Default.GetInstance<INavigationService>();
+
+            // Create new Navigation Page and set MainPage as its default page:
+            var firstPage = new NavigationPage(new VIew.NorwegianCityRacePage());
+            // Set Navigation page as default page for Navigation Service:
+            navigationService.Initialize(firstPage);
+            // You have to also set MainPage property for the app:
+            MainPage = firstPage;
         }
+
 
         protected override void OnStart()
         {

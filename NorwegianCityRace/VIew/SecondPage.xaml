@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="NorwegianCityRace.VIew.SecondPage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    x:Class="NorwegianCityRace.VIew.SecondPage" BackgroundColor="Gray">
 
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Label Text="Dette er en test "></Label>
-        <Label Text="{Binding Name, Mode=TwoWay}"></Label>
-        <Image Source="{Binding Picture, Mode=TwoWay}" WidthRequest="300" HeightRequest="300"></Image>
-    </StackLayout>
 
+<Grid>
+    <Grid.RowDefinitions>
+    <RowDefinition Height="*"></RowDefinition>
+    <RowDefinition Height=".7*"></RowDefinition>
+    </Grid.RowDefinitions>
+        
+    <cv:CarouselViewControl x:Name="MainCarousel"
+        ItemsSource="{Binding PerkList, Mode=TwoWay}"
+        ShowArrows="true"
+        ShowIndicators="false"
+        Orientation="Horizontal"
+        BackgroundColor="Gray"
+        PositionSelectedCommand="{Binding NewCommand}"
+        Grid.Row="0"
+        Margin="40">
+        <cv:CarouselViewControl.ItemTemplate>
+             <DataTemplate>
+                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".7*"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                               <Image Grid.Row="0" Source="{Binding PerkPhoto}" VerticalOptions="Center" WidthRequest="450" HeightRequest="328" Margin="20"></Image>
+                                <StackLayout  Grid.Row="1" Orientation="Vertical" HorizontalOptions="Center" Margin="10">
+                            <Label TextColor="White" Text="{Binding PerkName}"  FontSize="30" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{Binding PerkDetail}"></Label>
+                        </StackLayout>
+                    </Grid>
+            </DataTemplate>
+        </cv:CarouselViewControl.ItemTemplate>
+    </cv:CarouselViewControl>
+ 
+       
+     
+    </Grid>
     
 </ContentPage>

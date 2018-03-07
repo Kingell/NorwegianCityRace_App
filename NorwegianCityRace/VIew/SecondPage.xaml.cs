@@ -8,10 +8,22 @@ namespace NorwegianCityRace.VIew
 {
     public partial class SecondPage : ContentPage
     {
+
+       
         public SecondPage()
         {
             InitializeComponent();
             BindingContext = new SecondPageViewModel();
+
+           
+
+          
+
         }
+
+
+
+       
+          
     }
 }

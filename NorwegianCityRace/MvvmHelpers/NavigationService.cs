@@ -9,14 +9,11 @@ namespace NorwegianCityRace.MvvmHelpers
 {
     public class NavigationService : INavigationService
     {
+        // Dictionary with registered pages in the app:
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
+        // Navigation page where MainPage is hosted:
         private NavigationPage _navigation;
-
-        public void Initialize(NavigationPage navigationPage)
-        {
-            _navigation = navigationPage;
-        }
-
+        // Get currently displayed page:
         public string CurrentPageKey
         {
             get
@@ -31,114 +28,79 @@ namespace NorwegianCityRace.MvvmHelpers
                     var pageType = _navigation.CurrentPage.GetType();
 
                     return _pagesByKey.ContainsValue(pageType)
-                        ? _pagesByKey.First(p => p.Value == pageType).Key
-                        : null;
+                                      ? _pagesByKey.First(p => p.Value == pageType).Key.ToString() : null;
                 }
             }
         }
-
+        // GoBack implementation (just pop page from the navigation stack):
         public void GoBack()
         {
-            if (CanGoBack())
-            {
-                _navigation.PopAsync();
-            }
+            _navigation.PopAsync();
         }
-
-        public bool CanGoBack()
-        {
-            return _navigation?.Navigation?.NavigationStack?.Count > 1;
-        }
-
+        // NavigateTo method to navigate between pages without passing parameter:
         public void NavigateTo(string pageKey)
         {
             NavigateTo(pageKey, null);
         }
-
-        // Required for interface
+        // NavigateTo method to navigate between pages with passing parameter:
         public void NavigateTo(string pageKey, object parameter)
-        {
-            NavigateTo(pageKey, parameter, null, null, null, null, null, false);
-        }
-
-        // Two or more parameters
-        public void NavigateTo(string pageKey, object parameter1, object parameter2, object parameter3 = null,
-                               object parameter4 = null, object parameter5 = null, object parameter6 = null)
-        {
-            NavigateTo(pageKey, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6, false);
-        }
-
-        private void NavigateTo(string pageKey, object parameter1, object parameter2, object parameter3,
-                                object parameter4, object parameter5, object parameter6, bool replaceRoot)
         {
             lock (_pagesByKey)
             {
+
                 if (_pagesByKey.ContainsKey(pageKey))
                 {
                     var type = _pagesByKey[pageKey];
                     ConstructorInfo constructor;
-                    List<object> p = new List<object>();
-                    if (parameter1 != null)
-                        p.Add(parameter1);
-                    if (parameter2 != null)
-                        p.Add(parameter2);
-                    if (parameter3 != null)
-                        p.Add(parameter3);
-                    if (parameter4 != null)
-                        p.Add(parameter4);
-                    if (parameter5 != null)
-                        p.Add(parameter5);
-                    if (parameter6 != null)
-                        p.Add(parameter6);
-                    object[] parameters = p.ToArray();
-                    constructor = GetConstructor(type, parameters);
-                    if (constructor == null)
+                    object[] parameters;
+
+                    if (parameter == null)
                     {
-                        var exceptionMessage = $"No suitable constructor found for page {pageKey}";
-                        throw new InvalidOperationException(exceptionMessage);
-                    }
-                    if (!replaceRoot)
-                    {
-                        var page = constructor.Invoke(parameters) as Page;
-                        _navigation.PushAsync(page, false);
+                        constructor = type.GetTypeInfo()
+                            .DeclaredConstructors
+                            .FirstOrDefault(c => !c.GetParameters().Any());
+
+                        parameters = new object[]
+                        {
+                        };
                     }
                     else
                     {
-                        var page = constructor.Invoke(parameters) as Page;
-                        var root = _navigation.Navigation.NavigationStack.First();
-                        _navigation.Navigation.InsertPageBefore(page, root);
-                        _navigation.PopToRootAsync(false);
+                        constructor = type.GetTypeInfo()
+                            .DeclaredConstructors
+                            .FirstOrDefault(
+                                c =>
+                                {
+                                    var p = c.GetParameters();
+                                    return p.Count() == 1
+                                           && p[0].ParameterType == parameter.GetType();
+                                });
+
+                        parameters = new[]
+                        {
+                        parameter
+                    };
                     }
+
+                    if (constructor == null)
+                    {
+                        throw new InvalidOperationException(
+                            "No suitable constructor found for page " + pageKey);
+                    }
+
+                    var page = constructor.Invoke(parameters) as Page;
+                    _navigation.PushAsync(page);
                 }
                 else
                 {
-                    var exceptionMessage = $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?";
-                    throw new ArgumentException(exceptionMessage, nameof(pageKey));
+                    throw new ArgumentException(
+                        string.Format(
+                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
+                            pageKey), nameof(pageKey));
                 }
             }
         }
-
-        private ConstructorInfo GetConstructor(Type type, object[] parameters)
-        {
-            var parameterCount = parameters.Length;
-            ConstructorInfo constructor;
-            if (parameterCount > 0)
-            {
-                constructor = type.GetTypeInfo().DeclaredConstructors.SingleOrDefault(
-                c => {
-                    var p = c.GetParameters();
-                    return p.Count() == parameterCount && p[parameterCount - 1].ParameterType == parameters[parameterCount - 1].GetType();
-                });
-            }
-            else
-            {
-                constructor = type.GetTypeInfo()
-                                .DeclaredConstructors
-                                .FirstOrDefault(c => !c.GetParameters().Any());
-            }
-            return constructor;
-        }
-
+        // Register pages and add them to the dictionary:
         public void Configure(string pageKey, Type pageType)
         {
             lock (_pagesByKey)
@@ -153,10 +115,10 @@ namespace NorwegianCityRace.MvvmHelpers
                 }
             }
         }
-
-        public void SetNewRoot(string pageKey)
+        // Initialize first app page (navigation page):
+        public void Initialize(NavigationPage navigation)
         {
-            NavigateTo(pageKey, null, null, null, null, null, null, replaceRoot: true);
+            _navigation = navigation;
         }
     }
-}
+ }

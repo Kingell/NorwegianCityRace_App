@@ -32,7 +32,7 @@ namespace NorwegianCityRace.ViewModel
             }
         }
 
-        ImageSource _picture = ImageSource.FromFile("grp_profile.png");
+        ImageSource _picture = ImageSource.FromFile("Grp_profile.png");
         public ImageSource Picture
         {
             set
@@ -59,10 +59,16 @@ namespace NorwegianCityRace.ViewModel
                         Name = Name
                     };
 
-
+                    SecondPage secondpage = new SecondPage();
+                    secondpage.BindingContext = Model;
+                   
                     await Application.Current.MainPage.DisplayAlert("Notification", Model.Name + Model.Picture, "Okay");
-                    var nav = SimpleIoc.Default.GetInstance<INavigationService>();
-                    nav.NavigateTo("SecondPage",Model);
+
+                    //await Application.Current.MainPage.Navigation.PushAsync(secondpage);
+                  var nav = SimpleIoc.Default.GetInstance<INavigationService>();
+                    nav.NavigateTo("SecondPage");
+
+
                 });
             } }
 
